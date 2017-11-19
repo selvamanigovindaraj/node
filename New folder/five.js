@@ -1,13 +1,10 @@
-var fs = require("fs");
-
-// Create a readable stream
-var readerStream = fs.createReadStream('input.txt');
-
-// Create a writable stream
-var writerStream = fs.createWriteStream('output.txt');
-
-// Pipe the read and write operations
-// read input.txt and write data to output.txt
-readerStream.pipe(writerStream);
-
-console.log("Program Ended");
+var http = require('http');
+var fs = require ('fs')
+http.createServer(function (req, res) {
+	fs.readFile('index.html', function(err, data) {
+    res.writeHead(200, {'Content-Type': 'text/html'});
+    res.write(data);
+    res.end();
+  });
+  
+}).listen(8080);
